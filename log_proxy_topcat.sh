@@ -1,5 +1,22 @@
 #!/bin/bash
 
+if [ ! ${1: -7} == ".topcat" ] ; then
+
+	echo '
+Input must be a test file with .topcat extension
+Log format should be this : 
+
+1539 "News/Media" OBSERVED TCP_MISS
+3743 "none" DENIED TCP_DENIED
+...
+
+
+Example to create this I used :
+zcat SGOS_AccessLogs*.gz |cut -d " " -f 10-13 > my_logs.topcat
+'
+	exit
+fi
+
 ### Le format de log en entree doit etre : Tailleenbyte "Categorie/1 Categorie2" ACTION ...
 
 echo 'Abortion
@@ -83,7 +100,7 @@ Violence/Hate/Racism
 Weapons
 Web Advertisements
 Web Applications
-Web Hosting' > tmp/categories.txt  
+Web Hosting' > tmp/categories.txt	
 
 #Ecriture de lentete du fichier CSV
 echo "Categorie;Total Hits;OK;Denied;Total Bytes" > $1.csv
