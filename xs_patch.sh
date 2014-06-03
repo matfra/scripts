@@ -26,5 +26,5 @@ do
   echo "Installing the patch $PATCH"
   xe patch-apply host-uuid=$LOCAL_UUID uuid=$UUID
   mkdir $PATCH_DONE_DIR 2>/dev/null
-  rm $PATCH_NAME*
+  rm -i $PATCH_NAME*
 done
