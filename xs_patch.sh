@@ -1,5 +1,4 @@
 #!/bin/sh
-LOCAL_UUID="08112a18-4fc6-44b4-9e17-XXXXXXXXXXXX"
 PATCH_DIR=/root/updates
 PATCH_TMP_DIR=/root/updates/tmp
 PATCH_DONE_DIR=/root/updates/archives
@@ -11,6 +10,8 @@ if [ $# -eq 0 ]
   exit 1
 fi
 
+LOCAL_UUID=`xe host-list |awk '/uuid/ {print $5}'`
+echo "Patch will be applied on this machine : $LOCAL_UUID"
 
 for var in "$@"
 do
